@@ -8,6 +8,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# addtional
+import pandas_datareader as pdr
+
+
 # page setting
 st.set_page_config(layout="wide")
 
@@ -93,15 +97,38 @@ fig1.update_layout(
 fig1
 
 st.markdown(' ')
-st.markdown('##### 소비자물가와 가구형태와 소득계층')
+st.markdown('##### 소득계층 별 소비자물가와 가구형태와')
 temp = df_raw_1.loc[df_raw_1['소득계층'] != '전체']
 temp = temp.loc[temp['가구형태'] != '전체가구']
-fig = px.histogram(temp, x = "소비자물가지수", y = "가계지출", color = "가구형태", facet_col = "소득계층", histfunc='avg'
-            , facet_col_wrap = 4
+fig1 = px.histogram(temp, x = "소비자물가지수", y = "가계지출", color = "가구형태", facet_col = "소득계층", histfunc='avg'
              , barmode = "group", width=1500, height = 400)
-
+raw02_total2 = raw02[(raw02["가구형태"]!="전체가구")]
+fig = make_subplots(rows=2, cols=4, horizontal_spacing= 0.03, vertical_spacing= 0.12)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '100만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '100만원 미만']["가계지출"],
+             name='100만원 미만'), row=1, col=1)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '100~200만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '100~200만원 미만']["가계지출"],
+             name='10만원 이상 200만원 미만'), row=1, col=2)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '200~300만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '200~300만원 미만']["가계지출"],
+             name='200만원 이상 300만원 미만'), row=1, col=3)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '300~400만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '300~400만원 미만']["가계지출"],
+             name='300만원 이상 400만원 미만'), row=1, col=4)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '400~500만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '400~500만원 미만']["가계지출"],
+             name='400만원 이상 500만원 미만'), row=2, col=1)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '500~600만원 미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '500~600만원 미만']["가계지출"],
+             name='500만원 이상 600만원 미만'), row=2, col=2)
+fig.add_trace(go.Histogram(x=raw02_total2[raw02_total2["소득계층"] == '600만원이상 ~ 700미만']["소비자물가지수"],
+                         y=raw02_total2[raw02_total2["소득계층"] == '600만원이상 ~ 700미만']["가계지출"],
+             name='600만원 이상 700만원 미만'), row=2, col=3)
 fig.update_layout(
-	legend=dict(
+    width= 1300,
+    height= 800,
+    legend=dict(
         orientation="h", # 가로 방향으로
         yanchor="bottom", y=1.04, # y축 방향 위치 설정
         xanchor="left", x=0.28, # x축 방향 위치 설정
@@ -120,6 +147,7 @@ fig.update_layout(
                , title_text="소비자물가지수"
 )
 fig
+fig1
 
 st.markdown(' ')
 st.markdown('##### 소비자물가와 가구형태와 소득계층')
@@ -197,7 +225,6 @@ fig.update_layout(
 )
 fig
 
-import pandas_datareader as pdr
 st.markdown(' ')
 st.markdown('##### [첨고지표] 월간 유가지수(Dubai Crude)')
 # 두바이유 (Dubai Crude), monthly
@@ -245,7 +272,7 @@ st.markdown(' ')
 
 
 
-# # 지출코드 8
+# 지출코드 8
 st.markdown('#### [지출코드 8] 통신')
 st.markdown('설명설명')
 st.markdown(' ')
