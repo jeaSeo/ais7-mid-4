@@ -20,7 +20,7 @@ url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
 raw01 = load_data(url1)
 raw02 = load_data(url2)
-code7 = load_data('data/out/code7.csv')
+code7 = pd.read_csv('data/out/code7.csv')
 
 
 st.markdown('# 지출목적별 가계지출')
@@ -68,6 +68,7 @@ fig.update_layout(
 )
 fig
 
+st.markdown(' ')
 st.markdown('##### [첨고지표] 월간 유가지수(Dubai Crude)')
 # 두바이유 (Dubai Crude), monthly
 df_du = pdr.DataReader('POILDUBUSDM', 'fred', start='2012-01-01')
@@ -93,6 +94,8 @@ fig.update_layout(
 )
 fig
 
+st.markdown(' ')
+st.markdown('##### 소비자물가와 가구형태와 소득계층')
 raw_df_7 = raw02[raw02["지출코드"] == 7]
 temp = raw_df_7.loc[raw_df_7['소득계층'] != '전체']
 temp = temp.loc[temp['가구형태'] != '전체가구']
@@ -106,4 +109,6 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
-
+st.markdown(' ')
+st.markdown(' ')
+st.markdown(' ')

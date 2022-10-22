@@ -18,7 +18,7 @@ url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
 raw01 = load_data(url1)
 raw02 = load_data(url2)
-code2 = load_data('data/out/code2.csv')
+code2 = pd.read_csv('data/out/code2.csv')
 
 
 st.markdown('# 지출목적별 가계지출')

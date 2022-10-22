@@ -18,14 +18,13 @@ url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
 raw01 = load_data(url1)
 raw02 = load_data(url2)
-code3 = load_data('data/out/code3.csv')
+code3 = pd.read_csv('data/out/code3.csv')
 
 
 st.markdown('# 지출목적별 가계지출')
 st.markdown(' ')
 
 # 소비지수별 가계지출
-
 
 # 지출코드3
 st.markdown('#### [지출코드 3] 의류 및 신발')
