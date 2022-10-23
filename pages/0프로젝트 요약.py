@@ -61,25 +61,26 @@ st.markdown(' ')
 st.markdown(' ')
 # raw02
 st.markdown('## 물가 상승에 민감한 항목')
+st.markdown('''물가지수가 오르면 가계지출이 함께 오르거나 반비례로 반응하는 품목으로 **[물가지수 변동폭 > 가계지출 변동폭]**인 품목을 의미한다.''')
 # st.markdown('---')
 col1_1, col1_2= st.columns(2)
 with col1_1:
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 1] 식료품 및 비주류음료')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_1["연도"], y = df_raw_1["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_1["연도"], y = df_raw_1["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -117,20 +118,20 @@ with col1_1:
     
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 4] 주택 수도 전기 및 연료')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_4["연도"], y = df_raw_4["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -168,20 +169,20 @@ with col1_1:
 
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 8] 통신')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_8["연도"], y = df_raw_8["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_8["연도"], y = df_raw_8["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -221,20 +222,20 @@ with col1_1:
 
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 11] 음식 및 숙박')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_11["연도"], y = df_raw_11["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_11["연도"], y = df_raw_11["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -266,20 +267,20 @@ with col1_1:
 with col1_2:
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 3] 의류 및 신발')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_3["연도"], y = df_raw_3["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_3["연도"], y = df_raw_3["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -318,20 +319,20 @@ with col1_2:
 
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 6] 보건')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_6["연도"], y = df_raw_6["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_6["연도"], y = df_raw_6["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -370,20 +371,20 @@ with col1_2:
     
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 10] 교육')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_10["연도"], y = df_raw_10["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_10["연도"], y = df_raw_10["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -427,26 +428,26 @@ st.markdown('')
 
 
 st.markdown('## 물가 상승에 민감하지 않은 항목')
-st.markdown('''물가지수가 오르는데도 불구 가계지출은 줄어들거나 비슷한 품목으로 **[물가지수 변동폭 < 가계지출 변동폭]** 또는 **[물가지수 변동폭 ≒ 가계지출 변동폭]**인 품목을 의미한다.''')
+st.markdown('''물가지수가 오르는데도 불구 가계지출은 오르거나 비슷한 품목으로 **[물가지수 변동폭 < 가계지출 변동폭]** 또는 **[물가지수 변동폭 ≒ 가계지출 변동폭]**인 품목을 의미한다.''')
 st.markdown('')
 col2_1, col2_2= st.columns(2)
 with col2_1:
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 2] 주류 및 담배')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_2["연도"], y = df_raw_2["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_2["연도"], y = df_raw_2["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -484,20 +485,20 @@ with col2_1:
     
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 7] 교통')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_4["연도"], y = df_raw_4["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -536,20 +537,20 @@ with col2_1:
 with col2_2:
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 3] 의류 및 신발')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_3["연도"], y = df_raw_3["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_3["연도"], y = df_raw_3["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -588,20 +589,20 @@ with col2_2:
 
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 6] 보건')
-    st.markdown('##### 연도별 소비자물가지수와 가계지출')
+    st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(
         go.Bar(x = df_raw_6["연도"], y = df_raw_6["가계지출"]
-            , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
+            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
                 secondary_y = False)
 
     fig.add_trace(
         go.Scatter(mode = 'lines+markers+text'
                 , x= df_raw_6["연도"], y = df_raw_6["소비자물가지수"]
-                , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
+                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
     )
 
     fig.update_layout(
@@ -691,12 +692,12 @@ df_std = (df_num - df_num.mean())/df_num.std()
 df_std.insert(0, "시점", raw03["시점"])
 df_std["전년대비 물가상승률"] = raw03["전년대비 물가상승률"]
 
-st.markdown('## 전년대비 물가상승률과 연도별 고용률')
+st.markdown('## 전년대비 물가상승률과 연도 별 고용률')
 fig1 = make_subplots(specs=[[{"secondary_y": True}]])
 
 # 물가상승률과 실업률 비교
-st.markdown('#### 연도별 물가상승률과 취업률 및 실업률')
-# 연도별 물가상승률과 취업률 및 실업률
+st.markdown('#### 연도 별 물가상승률과 취업률 및 실업률')
+# 연도 별 물가상승률과 취업률 및 실업률
 fig15 = make_subplots(specs=[[{"secondary_y": True}]])
 
 fig15.add_trace(

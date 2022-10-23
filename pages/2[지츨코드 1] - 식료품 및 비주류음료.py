@@ -50,7 +50,7 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-st.markdown('##### 연도별 소비자물가지수와 가계지출')
+st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 df_raw_1  = raw02[raw02["지출코드"] == 1]
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
@@ -98,7 +98,7 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-st.markdown('##### 각 소득계층의 연도별 가계지출')
+st.markdown('##### 각 소득계층의 연도 별 가계지출')
 temp = df_raw_1.loc[df_raw_1['소득계층'] != '전체']
 temp = temp.loc[temp['가구형태'] != '전체가구']
 fig1 = px.scatter(temp,
@@ -174,7 +174,7 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-st.markdown('##### 각 가구형태의 소비자물가지수별 가계지출')
+st.markdown('##### 각 가구형태의 소비자물가지수 별 가계지출')
 temp = df_raw_1.loc[df_raw_1['소득계층'] != '전체']
 temp = temp.loc[temp['가구형태'] != '전체가구']
 fig = px.line(temp, x = "소비자물가지수", y = "가계지출", color = "소득계층", facet_col = "가구형태", markers = True, width=1000, height= 400)

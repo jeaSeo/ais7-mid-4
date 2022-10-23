@@ -31,8 +31,8 @@ raw02 = pd.read_csv(url2)
 st.markdown('# 소비자물가지수와 가계지출')
 st.markdown('''
 본 페이지는 소비자물가지수 데이터와 가계지출 데이터의 EDA결과 입니다.  \n
-소비자물가지수는 지난 10년간 꾸준히 상승해 왔으며, 지출품목별로는 통신, 식료품 및 비주류 음료, 음식 및 숙박 항목에 대한 가계지출이 높게 나타났습니다.  \n
-또한 지출항목별로 연도별 소비자물가지수와 가계지출 추세를 비교해 볼 때 [의류 및 신발, 교육] 항목은 소비자물가지수가 상승하는 반면 가계지출은 하락하는 추세를 보였으며, 이를 제외한 10개 항목은 비슷한 추세를 보였습니다.
+소비자물가지수는 지난 10년간 꾸준히 상승해 왔으며, 지출품목 별로는 통신, 식료품 및 비주류 음료, 음식 및 숙박 항목에 대한 가계지출이 높게 나타났습니다.  \n
+또한 지출항목별로 연도 별 소비자물가지수와 가계지출 추세를 비교해 볼 때 [의류 및 신발, 교육] 항목은 소비자물가지수가 상승하는 반면 가계지출은 하락하는 추세를 보였으며, 이를 제외한 10개 항목은 비슷한 추세를 보였습니다.
             ''')
 st.markdown(' ')
 st.markdown(' ')
@@ -40,7 +40,7 @@ st.markdown(' ')
 st.markdown(' ')
 
 # raw1
-st.markdown('### 연도별 소비자 물가지수(종합)')
+st.markdown('### 연도 별 소비자물가지수(종합)')
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 #add_traces
 fig.add_trace(
@@ -87,8 +87,8 @@ st.markdown(' ')
 st.markdown(' ')
 
 
-# 연도별 지출품목별 가계지출(종합)
-st.markdown('### 연도별 지출품목별 소비자물가지수(종합)')
+# 연도 별 지출품목 별 가계지출(종합)
+st.markdown('### 연도 별 지출품목 별 소비자물가지수(종합)')
 fig = make_subplots(rows=4, cols=3, horizontal_spacing= 0.03, vertical_spacing= 0.12, 
                    )
 fig.add_trace(go.Scatter(x=raw01[raw01["지출코드"] == 1]["연도"],
@@ -127,7 +127,7 @@ fig.add_trace(go.Scatter(x=raw01[raw01["지출코드"] == 11]["연도"],
 fig.add_trace(go.Scatter(x=raw01[raw01["지출코드"] == 12]["연도"],
                          y=raw01[raw01["지출코드"] == 12]["소비자물가지수"],
              mode='lines+markers', name='기타 상품 및 서비스'), row=4, col=3)
-# fig.update_layout(title='<b>연도별 지출품목별 가계지출(종합)</b>')
+# fig.update_layout(title='<b>연도 별 지출품목 별 가계지출(종합)</b>')
 
 fig.update_layout(
     title_text="<b></b>",
@@ -152,7 +152,7 @@ fig.update_layout(
 fig
 
 
-# 연도별 지출품목별 소비자물가지수
+# 연도 별 지출품목 별 소비자물가지수
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
@@ -160,7 +160,7 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
-st.markdown('### 연도별 가계지출(종합)')
+st.markdown('### 연도 별 가계지출(종합)')
 # raw02_total = raw02[(raw02["소득계층"] == "전체")&(raw02["가구형태"]=="전체가구")&(raw02["지출코드"]==0)]
 raw02_total = load_data('data/out/raw02_total.csv')
 
@@ -178,7 +178,7 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    # title_text="<b>연도별 가계지출(종합)</b>",
+    # title_text="<b>연도 별 가계지출(종합)</b>",
 	legend=dict(
         orientation="h", # 가로 방향으로
         yanchor="top", y=1.11, # y축 방향 위치 설정
@@ -210,8 +210,8 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-# 연도별 지출품목별 가계지출(종합)
-st.markdown('### 연도별 지출품목별 가계지출(종합)')
+# 연도 별 지출품목 별 가계지출(종합)
+st.markdown('### 연도 별 지출품목 별 가계지출(종합)')
 raw02_total2 = raw02[(raw02["소득계층"] == "전체")&(raw02["가구형태"]=="전체가구")]
 fig = make_subplots(rows=4, cols=3, horizontal_spacing= 0.03, vertical_spacing= 0.12, 
                    )
@@ -251,7 +251,7 @@ fig.add_trace(go.Scatter(x=raw02_total2[raw02_total2["지출코드"] == 11]["연
 fig.add_trace(go.Scatter(x=raw02_total2[raw02_total2["지출코드"] == 12]["연도"],
                          y=raw02_total2[raw02_total2["지출코드"] == 12]["가계지출"],
              mode='lines+markers', name='기타 상품 및 서비스'), row=4, col=3)
-# fig.update_layout(title='<b>연도별 지출품목별 가계지출(종합)</b>')
+# fig.update_layout(title='<b>연도 별 지출품목 별 가계지출(종합)</b>')
 
 fig.update_layout(
     title_text="<b></b>",
@@ -277,7 +277,7 @@ fig.update_layout(
 )
 fig
 st.markdown('- 소비자물가지수와 가계 지출 모두 상승하는 추세이다.')
-st.markdown('- 연도별 소득계층, 가구형태, 지출목절별로 가계지출의 평균을 시각화하였을 때 상대적으로 2016년에서 2017년 사이의 증감폭이 큰 사실을 알 수 있다. ')
+st.markdown('- 연도 별 소득계층, 가구형태, 지출목절별로 가계지출의 평균을 시각화하였을 때 상대적으로 2016년에서 2017년 사이의 증감폭이 큰 사실을 알 수 있다. ')
 st.markdown('- 소득계층이 600만원이상인 집단과 가구형태가 근로자가구인 집단에서 가계지출이 가장 높게 나타났다.')
 st.markdown('- 지출품목이 교통, 식료품 및 비주류 음료, 음식 및 숙박인 집단에서 가계지출이 상대적으로 높게 나타났다.')
 st.markdown(' ')
@@ -289,7 +289,7 @@ st.markdown(' ')
 st.markdown(' ')
 
 
-st.markdown('### 소득계층별 가구형태별 전체 분석')
+st.markdown('### 소득계층 별 가구형태 별 전체 분석')
 fig= px.scatter(raw02[(raw02["지출목적"].isin(["식료품 및 비주류음료", "주택 수도 전기 및 연료","보건", "통신", "교육", "음식 및 숙박", "의류 및 신발"])) & (raw02["소득계층"] != "전체")]
         , x = "소비자물가지수", y = "가계지출", color = "지출목적" , facet_col = "소득계층", facet_col_wrap = 10, size = "가계지출",log_x = True, height = 500, width = 2000)
 
@@ -323,7 +323,7 @@ st.markdown('')
 st.markdown('')
 
 #가구형태 = 전체가구, 지출목적 = 소비지출
-st.markdown('### 소득계층별 연도별 가계지출(전체)')
+st.markdown('### 소득계층 별 연도 별 가계지출(전체)')
 #가구형태 = 전체가구, 지출목적 = 소비지출
 ib_he = raw02.loc[(raw02["지출목적"] == "소비지출")&(raw02["가구형태"] == "전체가구")&(raw02["소득계층"] != "전체"), ["지출목적","연도", "소득계층", "가계지출"]]
 #피봇
@@ -347,8 +347,8 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-#가구형태별 연도별 가계지출(전체)
-st.markdown('### 가구형태별 연도별 가계지출(전체)')
+#가구형태 별 연도 별 가계지출(전체)
+st.markdown('### 가구형태 별 연도 별 가계지출(전체)')
 hs_he = raw02.loc[(raw02["소득계층"] == "전체")&(raw02["지출목적"]=="소비지출"),["연도","가구형태","가계지출"]]
 #피봇
 hs_he_pv = hs_he.groupby(["연도","가구형태"])[["가계지출"]].mean().unstack()
@@ -369,8 +369,8 @@ st.markdown(' ')
 st.markdown(' ')
 
 
-# 지출목적별 연도별 가계지출(전체)
-st.markdown('### 지출목적별 연도별 가계지출(전체)')
+# 지출목적 별 연도 별 가계지출(전체)
+st.markdown('### 지출목적 별 연도 별 가계지출(전체)')
 #소득계층 = 전체, 가구형태 = 전체가구
 ct_he = raw02.loc[(raw02["소득계층"] == "전체")&(raw02["가구형태"]=="전체가구"), ["연도","지출코드","지출목적","가계지출"]]
 #소비지출 삭제
