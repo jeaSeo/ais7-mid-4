@@ -324,15 +324,15 @@ st.markdown('### 소득계층별 연도별 가계지출(전체)')
 #가구형태 = 전체가구, 지출목적 = 소비지출
 ib_he = raw02.loc[(raw02["지출목적"] == "소비지출")&(raw02["가구형태"] == "전체가구")&(raw02["소득계층"] != "전체"), ["지출목적","연도", "소득계층", "가계지출"]]
 #피봇
-pv = ib_he.groupby(["연도","소득계층"])[["가계지출"]].sum().unstack().T
+pv = ib_he.groupby(["연도","소득계층"])[["가계지출"]].mean().unstack()["가계지출"].T
 #가구형태 = 전체가구, 지출목적 = 소비지출
 #피봇
 #heatmap시각화
 hm_fig = px.imshow(pv, text_auto=True, color_continuous_scale='Purples')
 hm_fig.update_layout(
     width= 1000,
-    height= 600,
-    # , margin=dict(l=20, r=0, t=10, b=0)
+    height= 500
+    , margin=dict(l=0, r=0, t=50, b=0)
     # , plot_bgcolor='#fff'
 )
 hm_fig
@@ -348,12 +348,13 @@ st.markdown(' ')
 st.markdown('### 가구형태별 연도별 가계지출(전체)')
 hs_he = raw02.loc[(raw02["소득계층"] == "전체")&(raw02["지출목적"]=="소비지출"),["연도","가구형태","가계지출"]]
 #피봇
-hs_he_pv = hs_he.groupby(["연도","가구형태"])[["가계지출"]].sum().unstack()
+hs_he_pv = hs_he.groupby(["연도","가구형태"])[["가계지출"]].mean().unstack()
 #시각화
 hm_fig = px.imshow(hs_he_pv["가계지출"].T, text_auto=True, color_continuous_scale='Purples')
 hm_fig.update_layout(
     width= 1000,
-    height= 350,
+    height= 350
+    , margin=dict(l=0, r=0, t=50, b=0)
 )
 hm_fig
 st.markdown(' ')
@@ -373,11 +374,12 @@ ct_he = raw02.loc[(raw02["소득계층"] == "전체")&(raw02["가구형태"]=="�
 ch_id = ct_he[ct_he["지출목적"] == "소비지출"].index
 ct_he = ct_he.drop(ch_id)
 #피봇
-ct_he_pv = ct_he.groupby(["연도","지출목적"])[["가계지출"]].sum().unstack()
+ct_he_pv = ct_he.groupby(["연도","지출목적"])[["가계지출"]].mean().unstack()
 #시각화
 hm_fig = px.imshow(ct_he_pv["가계지출"].T, text_auto=True, color_continuous_scale='Purples')
 hm_fig.update_layout(
     width= 1000,
-    height= 800,
+    height= 800
+    , margin=dict(l=0, r=0, t=50, b=0)
 )
 hm_fig

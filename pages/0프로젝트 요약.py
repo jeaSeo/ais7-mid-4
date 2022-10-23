@@ -48,7 +48,7 @@ st.markdown(' ')
 st.markdown(' ')
 # raw02
 st.markdown('## 물가 상승에 민감한 항목')
-st.markdown('---')
+# st.markdown('---')
 col1_1, col1_2= st.columns(2)
 with col1_1:
     # 소비지수별 가계지출
