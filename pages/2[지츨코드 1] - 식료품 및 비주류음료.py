@@ -9,19 +9,30 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # page setting
-st.set_page_config(layout="wide")
+st.set_page_config(
+   page_title="[지출코드 1] 식료품 및 비주류음료 - 으4으4",
+    layout="wide"
+)
 
 @st.cache
 def load_data(url):
     return pd.read_csv(url)
 url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
-raw01 = load_data(url1)
-raw02 = load_data(url2)
+# raw01 = load_data(url1)
+# raw02 = load_data(url2)
+raw01 = pd.read_csv(url1)
+raw02 = pd.read_csv(url2)
 code1 = pd.read_csv('data/out/code1.csv')
 
 
 st.markdown('# 지출코드 1 - 식료품 및 비주류음료')
+st.markdown('''
+            **분석1.** 2012~2016 물가 상승으로 인해 식료품 등의 필수 품목의 실질 지출이 감소했다.  
+            **분석2.** 2017년 조류인플루엔자 및 계란 파동, 오징어 어획량 감소의 원인에 따른 주 식료품 가격 인상으로 가계지출이 급증했다.  
+            **분석3.** 2019년부터 역대급 폭염 및 기록적인 폭우로 출하량등이 감소하여 물가가 급증해 전체적으로 가격이 인상되었으며, 그만큼 가계지출이 증가했다.  
+            따라서 식료품 및 비주류음료는 물가에 민감한 항목이다.
+            ''')
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
@@ -41,6 +52,8 @@ st.markdown(' ')
 
 st.markdown('##### 연도별 소비자물가지수와 가계지출')
 df_raw_1  = raw02[raw02["지출코드"] == 1]
+df_raw_1
+
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 fig.add_trace(

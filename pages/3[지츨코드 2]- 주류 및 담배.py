@@ -9,15 +9,20 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # page setting
-st.set_page_config(layout="wide")
+st.set_page_config(
+   page_title="[지출코드 2] 주류 및 담배 - 으4으4",
+    layout="wide"
+)
 
 @st.cache
 def load_data(url):
     return pd.read_csv(url)
 url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
-raw01 = load_data(url1)
-raw02 = load_data(url2)
+# raw01 = load_data(url1)
+# raw02 = load_data(url2)
+raw01 = pd.read_csv(url1)
+raw02 = pd.read_csv(url2)
 code2 = pd.read_csv('data/out/code2.csv')
 
 

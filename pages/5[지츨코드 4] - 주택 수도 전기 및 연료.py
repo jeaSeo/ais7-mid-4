@@ -9,15 +9,20 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # page setting
-st.set_page_config(layout="wide")
+st.set_page_config(
+   page_title="[지출코드 4] 주택 수도 전기 및 연로 - 으4으4",
+    layout="wide"
+)
 
 @st.cache
 def load_data(url):
     return pd.read_csv(url)
 url1 = "data/out/raw01.csv"
 url2 = "data/out/raw02.csv"
-raw01 = load_data(url1)
-raw02 = load_data(url2)
+# raw01 = load_data(url1)
+# raw02 = load_data(url2)
+raw01 = pd.read_csv(url1)
+raw02 = pd.read_csv(url2)
 code4 = pd.read_csv('data/out/code4.csv')
 
 
@@ -39,43 +44,45 @@ st.markdown(' ')
 st.markdown(' ')
 
 st.markdown('##### 연도별 소비자물가지수와 가계지출')
-st.markdown('설명설명')
 df_raw_4 = raw02[raw02["지출코드"] == 4]
+df_raw_4
+
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 fig.add_trace(
     go.Bar(x = df_raw_4["연도"], y = df_raw_4["가계지출"]
-            ,name = "연도별 가계지출", width = 0.6, marker = dict(color = "#e6e8ef")),
+        , name = "연도별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
             secondary_y = False)
 
 fig.add_trace(
     go.Scatter(mode = 'lines+markers+text'
-               , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
-               , name = "연도별 소비자물가지수", marker = dict(color = "#8446db")), secondary_y = True
+            , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
+            , name = "연도별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
 )
 
 fig.update_layout(
-	legend=dict(
+    width= 450
+    ,legend=dict(
         orientation="h", # 가로 방향으로
         yanchor="top", y=1.11, # y축 방향 위치 설정
         xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=80, b=20)
+    )
+    , margin=dict(l=10, r=0, t=80, b=20)
     # , paper_bgcolor="LightSteelBlue"
     , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
+).update_xaxes(showgrid=True
+            , gridwidth=1
+            , gridcolor='#f0f0f0'
+            , title_text="연도"
 ).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text='가계지출'
+                showgrid=True
+            , gridwidth=1
+            , gridcolor='#f0f0f0'
+            , title_text="소비자물가지수"
+            , secondary_y = True
 ).update_yaxes(
-    secondary_y = True
-    , title_text='소비자물가지수'
+            title_text="가계지출"
+            , secondary_y = False
 )
 fig
 st.markdown(' ')

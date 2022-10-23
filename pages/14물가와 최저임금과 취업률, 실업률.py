@@ -23,9 +23,8 @@ raw03 = load_data(url3)
 st.markdown('# 물가상승률과 취업률')
 st.markdown(' ')
 
-# 소비지수별 가계지출
-# 지출코드1
-st.markdown('#### 전년대비 물가상승률과 연도별 고용률')
+# 전년대비 물가상승률과 연도별 고용률
+st.markdown('#### 전년대비 물가상승률과 연도 별 고용률')
 st.markdown('설명설명')
 fig1 = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -37,7 +36,7 @@ fig1.add_trace(
 fig1.add_trace(
     go.Scatter(mode = 'lines+markers+text'
                , x= raw03["시점"], y = raw03["고용률 (%)"]
-               , name = "연도별 고용률(%)", marker = dict(color = "#204AB7")), secondary_y = True)
+               , name = "연도별 고용률(%)", marker = dict(color = "#3F007D")), secondary_y = True)
 
 fig1.update_layout(
 	legend=dict(
@@ -88,7 +87,7 @@ fig1.add_trace(
 fig1.add_trace(
     go.Scatter(mode = 'lines+markers+text'
                , x= raw03["시점"], y = raw03["실업률 (%)"]
-               , name = "연도별 실업률(%)", marker = dict(color = "#213569")), secondary_y = True)
+               , name = "연도별 실업률(%)", marker = dict(color = "#807DBA")), secondary_y = True)
 fig1.update_layout(
 	legend=dict(
         orientation="h", # 가로 방향으로
@@ -144,13 +143,13 @@ fig15.add_trace(
 # 고용률(정규화)
 fig15.add_trace(
     go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
-           , name = "취업률", marker = dict(color = "#204AB7")),
+           , name = "취업률", marker = dict(color = "#3F007D")),
             secondary_y = True)
 
 # 실업률(정규화)
 fig15.add_trace(
     go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
-           , name = "실업률", marker = dict(color = "#213569")),
+           , name = "실업률", marker = dict(color = "#807DBA")),
             secondary_y = True)
 
 fig15.update_layout(
@@ -185,3 +184,4 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
+
