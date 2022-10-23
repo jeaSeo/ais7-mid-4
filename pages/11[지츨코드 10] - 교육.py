@@ -166,35 +166,35 @@ st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 
-st.markdown('##### 소득계층 별 물가지수와 가계지출')
-fig = px.line(df_raw_10[(df_raw_10["가구형태"] != "전체가구") & (df_raw_10["소득계층"] != "전체")]
-        , x = "소비자물가지수", y = "가계지출", color = "소득계층", facet_col = "가구형태", markers = True, width=1000, height=400)
-fig.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.25, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=105, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    # , plot_bgcolor='#fff'
-).update_xaxes(showgrid=True
-               , gridwidth=1
-            #    , gridcolor='#f0f0f0'
-               , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-            #    , gridcolor='#f0f0f0'
-)
-fig
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
+# st.markdown('##### 소득계층 별 물가지수와 가계지출')
+# fig = px.line(df_raw_10[(df_raw_10["가구형태"] != "전체가구") & (df_raw_10["소득계층"] != "전체")]
+#         , x = "소비자물가지수", y = "가계지출", color = "소득계층", facet_col = "가구형태", markers = True, width=1000, height=400)
+# fig.update_layout(
+# 	legend=dict(
+#         orientation="h", # 가로 방향으로
+#         yanchor="top", y=1.25, # y축 방향 위치 설정
+#         xanchor="right", x=1, # x축 방향 위치 설정
+# 	)
+#     , margin=dict(l=0, r=0, t=105, b=20)
+#     # , paper_bgcolor="LightSteelBlue"
+#     # , plot_bgcolor='#fff'
+# ).update_xaxes(showgrid=True
+#                , gridwidth=1
+#             #    , gridcolor='#f0f0f0'
+#                , title_text="소비자물가지수"
+# ).update_yaxes(
+#                 showgrid=True
+#                , gridwidth=1
+#             #    , gridcolor='#f0f0f0'
+# )
+# fig
+# st.markdown(' ')
+# st.markdown(' ')
+# st.markdown(' ')
+# st.markdown(' ')
+# st.markdown(' ')
+# st.markdown(' ')
+# st.markdown(' ')
 
 st.markdown('##### 소득계층 별 각 가구형태의 소비자물가와 가계지출')
 temp = df_raw_10.loc[df_raw_10['소득계층'] != '전체']
