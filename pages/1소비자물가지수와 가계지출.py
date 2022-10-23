@@ -30,7 +30,6 @@ raw02 = pd.read_csv(url2)
 
 st.markdown('# 소비자물가지수와 가계지출')
 st.markdown(' ')
-st.markdown('저희는 각 소비자물가지수를 통해 ')
 st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')

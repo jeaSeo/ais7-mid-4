@@ -8,6 +8,9 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+from PIL import Image
+
+
 # page setting
 st.set_page_config(
    page_title="프로젝트 요약 - 으4으4",
@@ -43,7 +46,17 @@ df_raw_7 = raw02[raw02["지출코드"] == 7]
 df_raw_9 = raw02[raw02["지출코드"] == 9]
 
 st.markdown('# 프로젝트 요약')
-st.markdown('이러쿵 저러쿵')
+st.markdown('''
+            12개의 소비자물가지수 항목과 이에 대한 각 가계지출 데이터를 분석하여 물가상승에 민감한 항목을 도출하였습니다.  
+            또한 추가분석으로 물가상승률과 고용률 및 취업률의 관계를 분석해보았습니다.''')
+st.markdown(' ')
+image3 = Image.open('data/image3.png')
+st.image(image3)
+st.markdown(' ')
+st.markdown(' ')
+st.markdown(' ')
+st.markdown(' ')
+st.markdown(' ')
 st.markdown(' ')
 st.markdown(' ')
 # raw02
@@ -625,10 +638,6 @@ with col2_2:
     st.markdown(' ')
 st.markdown('')
 st.markdown('')
-st.markdown('')
-st.markdown('')
-st.markdown('')
-st.markdown('')
 
 st.markdown('## 소득 계층 별 소비자물가지수에 따른 가계지출')
 fig= px.scatter(raw02[(raw02["지출목적"].isin(["식료품 및 비주류음료", "주택 수도 전기 및 연료","보건"
@@ -671,7 +680,6 @@ raw03 = load_data(url3)
 
 
 st.markdown('## 전년대비 물가상승률과 연도별 고용률')
-st.markdown('설명설명')
 fig1 = make_subplots(specs=[[{"secondary_y": True}]])
 
 fig1.add_trace(
