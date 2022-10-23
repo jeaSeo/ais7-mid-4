@@ -33,11 +33,6 @@ st.markdown(' ')
 st.markdown('#### 전년대비 물가상승률과 연도 별 고용률')
 fig1 = make_subplots(specs=[[{"secondary_y": True}]])
 
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
-           name = "전년대비 물가상승률", marker = dict(color = "#DC5373")), secondary_y = False
-)
-
 # 고용률(정규화)
 fig1.add_trace(
     go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
@@ -49,6 +44,12 @@ fig1.add_trace(
     go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
            , name = "실업률", marker = dict(color = "#ccc")),
             secondary_y = True)
+
+fig1.add_trace(
+    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
+           name = "전년대비 물가상승률", marker = dict(color = "#DC5373")), secondary_y = False
+)
+
 fig1.update_layout(
 	legend=dict(
         orientation="h", # 가로 방향으로
@@ -200,14 +201,9 @@ fig15.update_layout(
 )
 fig15
 st.markdown('''
-대규모 경제위기(~ 2001년: IMF 금융위기, 2009년 ~ 2010년: 서브 프라임 모기지사태로 인한 국제 금융 위기, 2020년: 코로나 팬대믹으로 인한 국제 경기 둔화)가 도래한 경우 고용률이 급락한 모습을 확인 할 수 있었으며, 2003년에는 5대 수출품목 산업의 부진으로 인해 해당 산업의 고용률이 낮아지면서 전체적인 고용률이 하락하였습니다.  \n
+고용률이 급락은 실업률의 급등과 같은 원인을 공유합니다.  
+2003년에는 5대 수출품목 산업의 부진으로 인해 해당 산업의 고용률이 낮아지면서 전체적인 고용률이 하락하였습니다.  \n
 이를 제외한다면 전체적으로 고용률은 경제 위기상황에서 회복하여 우상향하는 모습을 확인 할 수 있었습니다.
             ''')
 st.markdown(' ')
 st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-st.markdown(' ')
-
