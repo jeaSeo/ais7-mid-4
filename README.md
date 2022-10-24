@@ -18,3 +18,68 @@
 다음과 같은 순서로 데이터 수집 및 전처리, 데이터 분석, 최종 결론 도출을 하였습니다.
 
 <img alt="image2" src="https://user-images.githubusercontent.com/104315524/197438464-5642bdc6-14f6-4114-8619-9bd993322b49.png" width="800px">
+
+### 프로젝트 참여자 
+<span style="width: 50%">
+  <span><img width="90" alt="Group 196" src="https://user-images.githubusercontent.com/104315524/197447414-74819046-4aff-4606-b475-bdfba7063a63.png"></span>
+  <span>
+    <b>권혜정</b>
+    <ul>
+      <li>지출 부문 조사 및 분석</li>
+      <li>데이터 전처리 및 시각화</li>
+      <li>관련 자료 조사 및 분석</li>
+      <li>발표 자료 제작</li>
+    </ul>
+  </span>
+</span>
+<span style="width: 50%">
+  <span><img width="90" alt="Group 208" src="https://user-images.githubusercontent.com/104315524/197447427-19953b8c-1e49-4b0e-a5ec-ced365f356e5.png"></span>
+    <span>
+    <b>서제아</b>
+    <ul>
+      <li>취업 부문 조사 및 분석</li>
+      <li>데이터 전처리 및 시각화</li>
+      <li>관련 자료 조사 및 분석</li>
+      <li>Streamlit 제작 및 배포</li>
+    </ul>
+  </span>
+</span>
+<span style="width: 50%">
+  <span><img width="90" alt="Group 216" src="https://user-images.githubusercontent.com/104315524/197447435-b1e1d229-ed90-48fc-a6e6-1f1699e16884.png"></span>
+  <span>
+    <b>유준혁</b>
+    <ul>
+      <li>취업 부문 조사 및 분석</li>
+      <li>데이터 전처리 및 시각화</li>
+      <li>관련 자료 조사 및 분석</li>
+      <li>발표 자료 제작</li>
+    </ul>
+  </span>
+</span>
+<span style="width: 50%">
+  <span><img width="90" alt="Group 214" src="https://user-images.githubusercontent.com/104315524/197447431-f8a761ef-9c97-42cb-9a1e-c57b7a1d13fc.png"></span>
+  <span>
+    <b>정수윤</b>
+    <ul>
+      <li>지출 부문 조사 및 분석</li>
+      <li>데이터 전처리 및 시각화</li>
+      <li>관련 자료 조사 및 분석</li>
+      <li>발표 자료 제작</li>
+      <li>Midproject 발표 진행</li>
+    </ul>
+  </span>
+</span>
+
+<span style="width: 50%">
+  <span><img width="90" alt="Group 198" src="https://user-images.githubusercontent.com/104315524/197447423-8b96a61f-cf6e-4cb2-8dfb-650dd17c3347.png"></span>
+  <span>
+    <b>정재영</b>
+    <ul>
+      <li>취업 부문 조사 및 분석</li>
+      <li>데이터 전처리 및 시각화</li>
+      <li>관련 자료 조사 및 분석</li>
+      <li>발표 자료 제작</li>
+    </ul>
+  </span>
+</span>
+
