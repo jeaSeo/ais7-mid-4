@@ -15,7 +15,10 @@ from plotly.graph_objs.scatter.marker import Line
 from PIL import Image
 
 # page setting
-st.set_page_config(layout="wide")
+st.set_page_config(
+   page_title="intro - 으4으4",
+    layout="wide"
+)
 st.markdown('''
 # 🎃 ʜᴀᴘᴘʏ ʜᴀʟʟᴏᴡᴇᴇɴ 👻  \n
 ''')
