@@ -8,6 +8,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# 본 프로젝트 차트 모듈
+import charts
+
+
 # page setting
 st.set_page_config(layout="wide")
 
@@ -30,50 +34,10 @@ st.markdown('# 물가상승률과 취업률')
 st.markdown(' ')
 
 # 전년대비 물가상승률과 연도별 고용률
-st.markdown('#### 전년대비 물가상승률과 연도 별 고용률')
-fig1 = make_subplots(specs=[[{"secondary_y": True}]])
+st.markdown('#### 전년대비 물가상승률')
 
-# 고용률(정규화)
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
-           , name = "취업률", marker = dict(color = "#ccc")),
-            secondary_y = True)
-
-# 실업률(정규화)
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
-           , name = "실업률", marker = dict(color = "#ccc")),
-            secondary_y = True)
-
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
-           name = "전년대비 물가상승률", marker = dict(color = "#DC5373")), secondary_y = False
-)
-
-fig1.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.15, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=20, r=0, t=10, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text='전년대비 물가상승률(%)'
-).update_yaxes(
-    secondary_y = True
-    , title_text='연도별 고용률(%)'
-)
-fig1
+fig = charts.tripleLineplot(df_std, x='시점', y1='고용률 (%)', c1='#ccc', y2='실업률 (%)', c2='#ccc', y3='전년대비 물가상승률', c3='#DC5373')
+fig 
 st.markdown('''
 **2003년 ~ 2006년**: 국제 유가가 장기적인 상승로 인해 2004년까지 비교적 높은 물가상승률을 보였지만, 이후 환율이 하락하면서 물가인상의 압력을 상쇄하였다.  \n
 **2008년**: 국제유가와 기타원자개 가격, 그리고 환율이 모두 상승하면서 조사한 데이터의 기간 아래 가장 큰 물가상승률을 기록하였다.  \n
@@ -95,49 +59,9 @@ st.markdown('')
 
 
 # 전년대비 물가상승률과 연도별 고용률
-st.markdown('#### 전년대비 물가상승률과 연도 별 고용률')
-fig1 = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
-           name = "전년대비 물가상승률", marker = dict(color = "#ccc")), secondary_y = False
-)
-
-# 고용률(정규화)
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
-           , name = "취업률", marker = dict(color = "#ccc")),
-            secondary_y = True)
-
-# 실업률(정규화)
-fig1.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
-           , name = "실업률", marker = dict(color = "#807DBA")),
-            secondary_y = True)
-fig1.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.15, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=20, r=0, t=10, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text='전년대비 물가상승률(%)'
-).update_yaxes(
-    secondary_y = True
-    , title_text='연도별 고용률(%)'
-)
-fig1
+st.markdown('#### 전년대비 물가상승률과 연도 별 실업률')
+fig = charts.tripleLineplot(df_std, x='시점', y1='실업률 (%)', c1='#807DBA', y2='고용률 (%)', c2='#ccc', y3='전년대비 물가상승률', c3='#ccc')
+fig 
 st.markdown('''
 실업률의 급등은 고용률의 급락과 같은 원인을 공유합니다. \n 
 2003년에는 수출증가세의 둔화와 국제 유가 상승 등으로 인한 경기회복률이 저하하면서 실업률이 증가하고 2005년까지 이어져가는 모습을 확인할 수 있습니다.  
@@ -154,52 +78,9 @@ st.markdown('')
 
 
 # 물가상승률과 실업률 비교
-st.markdown('#### 연도별 물가상승률과 취업률 및 실업률')
-# 연도별 물가상승률과 취업률 및 실업률
-fig15 = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
-           name = "전년대비 물가상승률", marker = dict(color = "#ccc")), secondary_y = False
-)
-
-# 실업률(정규화)
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
-           , name = "실업률", marker = dict(color = "#ccc")),
-            secondary_y = True)
-
-# 고용률(정규화)
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
-           , name = "취업률", marker = dict(color = "#3F007D")),
-            secondary_y = True)
-
-fig15.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.15, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=20, r=0, t=10, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="전년대비 물가상승률"
-    , secondary_y=False
-).update_yaxes(
-    title_text="취업률 및 고용률(%)"
-    , secondary_y=True
-)
-fig15
+st.markdown('#### 연도별 물가상승률과 취업률 및 고용률')
+fig = charts.tripleLineplot(df_std, x='시점', y1='고용률 (%)', c1='#3F007D', y2='실업률 (%)', c2='#ccc', y3='전년대비 물가상승률', c3='#ccc')
+fig 
 st.markdown('''
 고용률이 급락은 실업률의 급등과 같은 원인을 공유합니다.  
 2003년에는 5대 수출품목 산업의 부진으로 인해 해당 산업의 고용률이 낮아지면서 전체적인 고용률이 하락하였습니다.  \n

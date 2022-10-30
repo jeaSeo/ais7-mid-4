@@ -8,6 +8,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# 본 프로젝트 차트 모듈
+import charts
+
+
 # page setting
 st.set_page_config(
    page_title="[지출코드 8] 통신 - 으4으4",
@@ -53,40 +57,7 @@ st.markdown(' ')
 
 st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 df_raw_8 = raw02[raw02["지출코드"] == 8]
-fig = make_subplots(specs=[[{"secondary_y": True}]])
-fig.add_trace(
-    go.Bar(x = df_raw_8["연도"], y = df_raw_8["가계지출"]
-            ,name = "연도별 가계지출", width = 0.6, marker = dict(color = "#e6e8ef")),
-            secondary_y = False)
-
-fig.add_trace(
-    go.Scatter(mode = 'lines+markers+text'
-               , x= df_raw_8["연도"], y = df_raw_8["소비자물가지수"]
-               , name = "연도별 소비자물가지수", marker = dict(color = "#8446db")), secondary_y = True
-)
-fig.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.18, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=90, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text='가계지출'
-).update_yaxes(
-    secondary_y = True
-    , title_text='소비자물가지수'
-)
+fig = charts.linebar(df_raw_8, x='연도', y='가계지출', sy='소비자물가지수')
 fig
 st.markdown(' ')
 st.markdown(' ')
@@ -97,22 +68,8 @@ st.markdown(' ')
 st.markdown(' ')
 
 st.markdown('##### 소득계층 별 소비자물가지수에 따른 가계지출')
-fig = px.scatter(df_raw_8[(df_raw_8["가구형태"] == "전체가구") & (df_raw_8["소득계층"] != "전체")], x = "소비자물가지수", y = "가계지출", color = "소득계층"
-           ,size = "가계지출",log_x = True, width=1000, height= 400)
-fig.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.18, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=90, b=20)
-).update_xaxes(showgrid=True
-               , gridwidth=1
-               , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-)
+temp = df_raw_8[(df_raw_8["가구형태"] == "전체가구") & (df_raw_8["소득계층"] != "전체")]
+fig = charts.scatter(temp, x='소비자물가지수', y="가계지출", color="소득계층", size="가계지출")
 fig
 st.markdown(' ')
 st.markdown(' ')
@@ -123,22 +80,8 @@ st.markdown(' ')
 st.markdown(' ')
 
 st.markdown('##### 가구형태 별 소비자물가지수에 따른 가계지출')
-fig = px.scatter(df_raw_8[(df_raw_8["가구형태"] != "전체가구") & (df_raw_8["소득계층"] == "전체")], x = "소비자물가지수", y = "가계지출", color = "가구형태"
-           ,size = "가계지출",log_x = True, width=1000, height= 400)
-fig.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.18, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=90, b=20)
-).update_xaxes(showgrid=True
-               , gridwidth=1
-               , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-)
+temp = df_raw_8[(df_raw_8["가구형태"] != "전체가구") & (df_raw_8["소득계층"] == "전체")]
+fig = charts.scatter(temp, x='소비자물가지수', y="가계지출", color="가구형태", size="가계지출", height=400)
 fig
 st.markdown(' ')
 st.markdown(' ')
@@ -149,27 +92,8 @@ st.markdown(' ')
 st.markdown(' ')
 
 st.markdown('##### 가구형태 별 소득계층 별 소비자물가지수에 따른 가계지출')
-fig = px.scatter(df_raw_8[(df_raw_8["가구형태"] != "전체가구") & (df_raw_8["소득계층"].isin(["100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만"]))]
-           , x = "소비자물가지수", y = "가계지출", color = "가구형태", facet_col = "소득계층" 
-           ,size = "가계지출",log_x = True)
-fig.update_layout(
-    width=1000
-    , height=400
-	, legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.23, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=105, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    # , plot_bgcolor='#fff'
-).update_xaxes(showgrid=True
-               , gridwidth=1
-               , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-)
+temp = df_raw_8[(df_raw_8["가구형태"] != "전체가구") & (df_raw_8["소득계층"].isin(["100~200만원 미만", "200~300만원 미만", "300~400만원 미만", "400~500만원 미만"]))]
+fig = charts.scatterGroup(temp, x='소비자물가지수', y="가계지출", color="가구형태", fcol='소득계층', facet_col_wrap=4, size="가계지출", height=400)
 fig
 st.markdown('')
 st.markdown('')

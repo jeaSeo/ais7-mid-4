@@ -10,6 +10,8 @@ from plotly.subplots import make_subplots
 
 from PIL import Image
 
+# 본 프로젝트 차트 모듈
+import charts
 
 # page setting
 st.set_page_config(
@@ -66,50 +68,14 @@ st.markdown('')
 st.markdown('')
 st.markdown('')
 # st.markdown('---')
+
 col1_1, col1_2= st.columns(2)
 with col1_1:
     # 소비지수별 가계지출
     st.markdown('##### [지출코드 1] 식료품 및 비주류음료')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_1["연도"], y = df_raw_1["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_1["연도"], y = df_raw_1["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width= 450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_1, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -123,44 +89,7 @@ with col1_1:
     st.markdown('##### [지출코드 4] 주택 수도 전기 및 연료')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_4["연도"], y = df_raw_4["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width= 450
-        ,legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_4, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -175,43 +104,7 @@ with col1_1:
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
 
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_8["연도"], y = df_raw_8["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_8["연도"], y = df_raw_8["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_8, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -227,44 +120,7 @@ with col1_1:
     st.markdown('##### [지출코드 11] 음식 및 숙박')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_11["연도"], y = df_raw_11["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_11["연도"], y = df_raw_11["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_11, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
 
 with col1_2:
@@ -272,44 +128,7 @@ with col1_2:
     st.markdown('##### [지출코드 3] 의류 및 신발')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_3["연도"], y = df_raw_3["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_3["연도"], y = df_raw_3["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_3, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -324,44 +143,7 @@ with col1_2:
     st.markdown('##### [지출코드 6] 보건')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_6["연도"], y = df_raw_6["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_6["연도"], y = df_raw_6["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_6, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -376,44 +158,7 @@ with col1_2:
     st.markdown('##### [지출코드 10] 교육')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_10["연도"], y = df_raw_10["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_10["연도"], y = df_raw_10["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width= 450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_10, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -441,44 +186,7 @@ with col2_1:
     st.markdown('##### [지출코드 2] 주류 및 담배')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_2["연도"], y = df_raw_2["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_2["연도"], y = df_raw_2["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width= 450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_2, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -492,44 +200,7 @@ with col2_1:
     st.markdown('##### [지출코드 7] 교통')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_4["연도"], y = df_raw_4["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_4["연도"], y = df_raw_4["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width= 450
-        ,legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_4, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -544,44 +215,7 @@ with col2_2:
     st.markdown('##### [지출코드 3] 의류 및 신발')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_3["연도"], y = df_raw_3["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_3["연도"], y = df_raw_3["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_3, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -596,44 +230,7 @@ with col2_2:
     st.markdown('##### [지출코드 6] 보건')
     st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 
-
-    fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-    fig.add_trace(
-        go.Bar(x = df_raw_6["연도"], y = df_raw_6["가계지출"]
-            , name = "연도 별 가계지출", width = 0.4, marker = dict(color = "#e6e8ef")),
-                secondary_y = False)
-
-    fig.add_trace(
-        go.Scatter(mode = 'lines+markers+text'
-                , x= df_raw_6["연도"], y = df_raw_6["소비자물가지수"]
-                , name = "연도 별 소비자물가지수", marker = dict(color = "#8446Db")), secondary_y = True
-    )
-
-    fig.update_layout(
-        width=450
-        , legend=dict(
-            orientation="h", # 가로 방향으로
-            yanchor="top", y=1.11, # y축 방향 위치 설정
-            xanchor="right", x=1, # x축 방향 위치 설정
-        )
-        , margin=dict(l=10, r=0, t=80, b=20)
-        # , paper_bgcolor="LightSteelBlue"
-        , plot_bgcolor='#fff'
-    ).update_xaxes(showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="연도"
-    ).update_yaxes(
-                    showgrid=True
-                , gridwidth=1
-                , gridcolor='#f0f0f0'
-                , title_text="소비자물가지수"
-                , secondary_y = True
-    ).update_yaxes(
-                title_text="가계지출"
-                , secondary_y = False
-    )
+    fig = charts.linebar(df_raw_6, x='연도', y='가계지출', sy='소비자물가지수', width=450)
     fig
     st.markdown(' ')
     st.markdown(' ')
@@ -652,31 +249,9 @@ st.markdown('''
 **결과2.** 저소득층은 교육 항목에 가장 적은 소비를 하며, 소득이 높아질수록 교육에 투자하는 지출이 점점 늘어나는 것을 볼 수 있습니다.  \n
 **결과3.** 의류 및 신발 항목도 소득이 높아질수록 지출이 높아지며, 주택 수도, 보건, 통신항목은 소득계층간에 큰 차이가 없음을 확인할 수 있습니다. \n
             ''')
-fig= px.scatter(raw02[(raw02["지출목적"].isin(["식료품 및 비주류음료", "주택 수도 전기 및 연료","보건"
-            ,"통신", "교육", "음식 및 숙박", "의류 및 신발"])) & (raw02["소득계층"] != "전체")]
-        , x = "소비자물가지수", y = "가계지출", color = "지출목적"
-                  , facet_col = "소득계층", facet_col_wrap = 10, size = "가계지출",log_x = True, height = 500, width = 2000)
 
-fig.update_layout(
-    title_text="<b></b>",
-    width= 1000,
-    height= 800,
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.1, # y축 방향 위치 설정
-        xanchor="right", x=1.0, # x축 방향 위치 설정
-	)
-    , margin=dict(l=20, r=0, t=110, b=0)
-    # , plot_bgcolor='#fff'
-).update_xaxes(showgrid=True
-               , gridwidth=1
-               , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-            #    , title_text="<b>가계지출</b>"
-               , secondary_y=True
-)
+fig = charts.scatterGroup(df=raw02[(raw02["지출코드"].isin([1,3,4,6,8,10,11])) & (raw02["소득계층"] != "전체")], 
+                 x='소비자물가지수', y='가계지출', color='지출목적',fcol='소득계층',size="가계지출")
 fig
 st.markdown('')
 st.markdown('')
@@ -697,56 +272,12 @@ df_std = (df_num - df_num.mean())/df_num.std()
 df_std.insert(0, "시점", raw03["시점"])
 df_std["전년대비 물가상승률"] = raw03["전년대비 물가상승률"]
 
-st.markdown('## 전년대비 물가상승률과 연도 별 고용률')
-fig1 = make_subplots(specs=[[{"secondary_y": True}]])
-
 # 물가상승률과 실업률 비교
+st.markdown('## 전년대비 물가상승률과 연도 별 고용률')
 st.markdown('#### 연도 별 물가상승률과 취업률 및 실업률')
 # 연도 별 물가상승률과 취업률 및 실업률
-fig15 = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x= df_std["시점"], y = df_std["전년대비 물가상승률"], 
-           name = "전년대비 물가상승률", marker = dict(color = "#DC5373")), secondary_y = False
-)
-
-# 실업률(정규화)
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["실업률 (%)"]
-           , name = "실업률", marker = dict(color = "#807DBA")),
-            secondary_y = True)
-
-# 고용률(정규화)
-fig15.add_trace(
-    go.Scatter(mode = 'lines+markers+text', x = df_std["시점"], y = df_std["고용률 (%)"]
-           , name = "취업률", marker = dict(color = "#3F007D")),
-            secondary_y = True)
-
-fig15.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.15, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=20, r=0, t=10, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="전년대비 물가상승률"
-    , secondary_y=False
-).update_yaxes(
-    title_text="취업률 및 고용률(%)"
-    , secondary_y=True
-)
-fig15
+fig = charts.tripleLineplot(df_std, x='시점', y1='고용률 (%)', c1='#3f007d', y2='실업률 (%)', c2='#807dba', y3='전년대비 물가상승률', c3='#dc5373')
+fig 
 st.markdown('''
 물가상승률과 취업률/실업률 사이에 어떠한 **상관관계를 확인할 수 없음**  
 세 지표 모두 **외부적 요인에 의해 영향**을 받는 지표  \n

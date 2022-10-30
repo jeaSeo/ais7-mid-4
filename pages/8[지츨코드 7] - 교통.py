@@ -8,6 +8,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# 본 프로젝트 차트 모듈
+import charts
+
+
 # page setting
 st.set_page_config(
    page_title="[지출코드 7] 교통 - 으4으4",
@@ -51,42 +55,7 @@ st.markdown(' ')
 
 st.markdown('##### 연도 별 소비자물가지수와 가계지출')
 df_raw_7 = raw02[raw02["지출코드"] == 7]
-fig = make_subplots(specs=[[{"secondary_y": True}]])
-
-fig.add_trace(
-    go.Bar(x = df_raw_7["연도"], y = df_raw_7["가계지출"]
-            ,name = "연도별 가계지출", width = 0.6, marker = dict(color = "#e6e8ef")),
-            secondary_y = False)
-
-fig.add_trace(
-    go.Scatter(mode = 'lines+markers+text'
-               , x= df_raw_7["연도"], y = df_raw_7["소비자물가지수"]
-               , name = "연도별 소비자물가지수", marker = dict(color = "#8446db")), secondary_y = True
-)
-
-fig.update_layout(
-	legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.11, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=80, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    , plot_bgcolor='#fff'
-).update_xaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text="연도"
-).update_yaxes(
-    showgrid=True
-    , gridwidth=1
-    , gridcolor='#f0f0f0'
-    , title_text='가계지출'
-).update_yaxes(
-    secondary_y = True
-    , title_text='소비자물가지수'
-)
+fig = charts.linebar(df_raw_7, x='연도', y='가계지출', sy='소비자물가지수')
 fig
 st.markdown(' ')
 st.markdown(' ')
@@ -133,27 +102,7 @@ st.markdown('##### 가구형태로 본 소득계층 별 소비자물가와 가�
 raw_df_7 = raw02[raw02["지출코드"] == 7]
 temp = raw_df_7.loc[raw_df_7['소득계층'] != '전체']
 temp = temp.loc[temp['가구형태'] != '전체가구']
-chart7 = px.scatter(temp, x = "소비자물가지수", y = "가계지출", color = "가구형태", facet_col = "소득계층"
-            ,facet_col_wrap=4,  size = "가계지출",log_x = True, )
-chart7.update_layout(
-    width=1000
-    , height = 650
-	, legend=dict(
-        orientation="h", # 가로 방향으로
-        yanchor="top", y=1.12, # y축 방향 위치 설정
-        xanchor="right", x=1, # x축 방향 위치 설정
-	)
-    , margin=dict(l=0, r=0, t=105, b=20)
-    # , paper_bgcolor="LightSteelBlue"
-    # , plot_bgcolor='#fff'
-).update_xaxes(showgrid=True
-               , gridwidth=1
-            #    , title_text="소비자물가지수"
-).update_yaxes(
-                showgrid=True
-               , gridwidth=1
-)
-chart7
-
+fig = charts.scatterGroup(temp, x='소비자물가지수',y='가계지출',color='가구형태',fcol='소득계층',size='가계지출', facet_col_wrap=4, height=650)
+fig
 st.markdown(' ')
 st.markdown(' ')

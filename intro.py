@@ -25,3 +25,6 @@ st.markdown('''
 st.markdown('#### ')
 halloween = Image.open('data/halloween.jpg')
 st.image(halloween)
+
+
+st.balloons()
