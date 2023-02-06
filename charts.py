@@ -12,9 +12,9 @@ from PIL import Image
 # 바 랑 라인 동시에
 def linebar(df, x, y, sy=None, width=700, mainColor="#8446Db"):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Bar(x = df[x], y = df[y] , name = (x+'별'+y), width = 0.4, marker = dict(color = "#e6e8ef")), secondary_y = False)
+    fig.add_trace(go.Bar(x = df[x], y = df[y] , name = (x+' 별 '+y), width = 0.4, marker = dict(color = "#e6e8ef")), secondary_y = False)
     if sy != None:
-        fig.add_trace(go.Scatter(mode = 'lines+markers+text', x= df[x], y = df[sy], name = (x+" 별 "+y), marker = dict(color = mainColor)), secondary_y = True)
+        fig.add_trace(go.Scatter(mode = 'lines+markers+text', x= df[x], y = df[sy], name = (x+" 별 "+sy), marker = dict(color = mainColor)), secondary_y = True)
         
     fig.update_layout(
         width=width
